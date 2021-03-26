@@ -1,0 +1,160 @@
+--- a/target/linux/ramips/dts/mt7621_hiwifi_hc5962.dts
++++ b/target/linux/ramips/dts/mt7621_hiwifi_hc5962.dts
+@@ -4,8 +4,8 @@
+ #include <dt-bindings/input/input.h>
+ 
+ / {
+-	compatible = "hiwifi,hc5962", "mediatek,mt7621-soc";
+-	model = "HiWiFi HC5962";
++	compatible = "hiwifi,hc5962-spi", "mediatek,mt7621-soc";
++	model = "HiWiFi HC5962-SPI";
+ 
+ 	aliases {
+ 		led-boot = &led_system;
+@@ -42,10 +42,15 @@
+ 			linux,code = <KEY_RESTART>;
+ 		};
+ 	};
++};
++
++&spi0 {
++	status = "okay";
+ 
+-	ubi-concat {
+-		compatible = "mtd-concat";
+-		devices = <&ubiconcat0 &ubiconcat1>;
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <50000000>;
+ 
+ 		partitions {
+ 			compatible = "fixed-partitions";
+@@ -53,58 +58,28 @@
+ 			#size-cells = <1>;
+ 
+ 			partition@0 {
+-				label = "ubi";
+-				reg = <0x0 0x79c0000>;
++				label = "u-boot";
++				reg = <0x0 0x30000>;
++				read-only;
+ 			};
+-		};
+-	};
+-};
+-
+-&nand {
+-	status = "okay";
+ 
+-	partitions {
+-		compatible = "fixed-partitions";
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-
+-		partition@0 {
+-			label = "u-boot";
+-			reg = <0x0 0x80000>;
+-			read-only;
+-		};
+-
+-		partition@80000 {
+-			label = "debug";
+-			reg = <0x80000 0x80000>;
+-			read-only;
+-		};
+-
+-		factory: partition@100000 {
+-			label = "factory";
+-			reg = <0x100000 0x40000>;
+-			read-only;
+-		};
+-
+-		partition@140000 {
+-			label = "kernel";
+-			reg = <0x140000 0x400000>;
+-		};
+-
+-		ubiconcat0: partition@540000 {
+-			label = "ubiconcat0";
+-			reg = <0x540000 0x1c80000>;
+-		};
++			partition@30000 {
++				label = "u-boot-env";
++				reg = <0x30000 0x10000>;
++				read-only;
++			};
+ 
+-		partition@21c0000 {
+-			label = "bdinfo";
+-			reg = <0x21c0000 0x80000>;
+-			read-only;
+-		};
++			factory: partition@40000 {
++				label = "factory";
++				reg = <0x40000 0x10000>;
++				read-only;
++			};
+ 
+-		ubiconcat1: partition@2240000 {
+-			label = "ubiconcat1";
+-			reg = <0x2240000 0x5d40000>;
++			partition@50000 {
++				compatible = "denx,uimage";
++				label = "firmware";
++				reg = <0x50000 0xfb0000>;
++			};
+ 		};
+ 	};
+ };
+@@ -129,28 +104,8 @@
+ 	};
+ };
+ 
+-&switch0 {
+-	ports {
+-		port@1 {
+-			status = "okay";
+-			label = "lan1";
+-		};
+-
+-		port@2 {
+-			status = "okay";
+-			label = "lan2";
+-		};
+-
+-		port@3 {
+-			status = "okay";
+-			label = "lan3";
+-		};
+-
+-		port@4 {
+-			status = "okay";
+-			label = "wan";
+-		};
+-	};
++&ethernet {
++	mtd-mac-address = <&factory 0xe000>;
+ };
+ 
+ &state_default {
+ 
+--- a/target/linux/ramips/image/mt7621.mk
++++ b/target/linux/ramips/image/mt7621.mk
+@@ -563,15 +563,7 @@
+ 
+ define Device/hiwifi_hc5962
+   $(Device/dsa-migration)
+-  BLOCKSIZE := 128k
+-  PAGESIZE := 2048
+-  KERNEL_SIZE := 4096k
+-  UBINIZE_OPTS := -E 5
+-  IMAGE_SIZE := 32768k
+-  IMAGES += factory.bin
+-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+-  IMAGE/factory.bin := append-kernel | pad-to $$(KERNEL_SIZE) | append-ubi | \
+-	check-size
++  IMAGE_SIZE := 16064k
+   DEVICE_VENDOR := HiWiFi
+   DEVICE_MODEL := HC5962
+   DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 kmod-usb3
