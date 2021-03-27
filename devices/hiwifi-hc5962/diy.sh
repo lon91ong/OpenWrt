@@ -8,14 +8,14 @@ sed -i 's?admin/status/channel_analysis??' package/feeds/luci/luci-mod-status/ro
 cp -f $GITHUB_WORKSPACE/devices/hiwifi-hc5962/mt7621_hiwifi_hc5962-spi.dts ./target/linux/ramips/dts/
 
 cat >> ./target/linux/ramips/image/mt7621.mk <<EOF
-define Device/hiwifi_hc5962-spi
+define Device/hiwifi_hc5962
   $(Device/dsa-migration)
   IMAGE_SIZE := 16064k
   DEVICE_VENDOR := HiWiFi
-  DEVICE_MODEL := HC5962-SPI
+  DEVICE_MODEL := HC5962
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2
 endef
-TARGET_DEVICES += hiwifi_hc5962-spi
+TARGET_DEVICES += hiwifi_hc5962
 EOF
 
 sed -i 's/^[ \t]*//g' ./target/linux/ramips/image/mt7621.mk
