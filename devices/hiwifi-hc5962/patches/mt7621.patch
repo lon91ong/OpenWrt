@@ -20,4 +20,3 @@
 +  DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2
  endef
  TARGET_DEVICES += hiwifi_hc5962
- 
