@@ -5,7 +5,7 @@ echo -e "\q" | svn co https://github.com/coolsnowwolf/lede/trunk/target/linux/ra
 
 sed -i 's?admin/status/channel_analysis??' package/feeds/luci/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json
 
-cp -f $GITHUB_WORKSPACE/mt7621_hiwifi_hc5962-spi.dts ./target/linux/ramips/dts/
+cp -f $GITHUB_WORKSPACE/devices/${{matrix.target}}/mt7621_hiwifi_hc5962-spi.dts ./target/linux/ramips/dts/
 
 cat >> ./target/linux/ramips/image/mt7621.mk <<EOF
 define Device/hiwifi_hc5962-spi
