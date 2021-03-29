@@ -1,7 +1,7 @@
 #/bin/bash
 echo
 echo
-echo "本脚本仅适用于在Ubuntu环境下编译 https://github.com/garypang13/Actions-OpenWrt"
+echo "本脚本仅适用于在Ubuntu环境下编译 https://github.com/lon91ong/OpenWrt"
 echo
 echo
 
@@ -19,7 +19,7 @@ echo
 clear
 
 rm -Rf openwrt/common openwrt/files openwrt/devices
-svn co https://github.com/garypang13/Actions-OpenWrt/trunk/devices openwrt/devices
+svn co https://github.com/lon91ong/OpenWrt/trunk/devices openwrt/devices
 cd openwrt
 
 git checkout .
@@ -44,11 +44,13 @@ elif [ $firmware == "xiaoyu_xy-c5" ]; then
 	firmware="XY-C5"
 elif [ $firmware == "d-team_newifi-d2" ]; then
 	firmware="newifi-d2"
+elif [ $firmware == "hiwifi_hc5962" ]; then
+	firmware="hiwifi-hc5962"
 else
 	echo "无法识别固件类型,请退出"
 fi
 
-if [[ $firmware =~ (redmi-ac2100|phicomm-k2p|newifi-d2|k2p-32m-usb|XY-C5|xiaomi-r3p) ]]; then
+if [[ $firmware =~ (redmi-ac2100|phicomm-k2p|newifi-d2|k2p-32m-usb|XY-C5|xiaomi-r3p|hiwifi-hc5962) ]]; then
 	if [[ ! -f staging_dir/toolchain-mipsel_24kc_gcc-8.4.0_musl ]]; then
 		wget -cO sdk1.tar.xz https://mirrors.cloud.tencent.com/openwrt/snapshots/targets/ramips/mt7621/openwrt-sdk-21.02-SNAPSHOT-ramips-mt7621_gcc-8.4.0_musl.Linux-x86_64.tar.xz
 	fi
@@ -64,8 +66,8 @@ fi
 
 echo
 
-read -p "请输入后台地址 [回车默认10.0.0.1]: " ip
-ip=${ip:-"10.0.0.1"}
+read -p "请输入后台地址 [回车默认192.168.77.1]: " ip
+ip=${ip:-"192.168.77.1"}
 echo "您的后台地址为: $ip"
 
 rm -Rf feeds package/feeds common files diy tmp
