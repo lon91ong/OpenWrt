@@ -40,8 +40,8 @@ fi
 
 
 rm -Rf openwrt
-git clone -b openwrt-21.02 --depth 1 https://github.com/openwrt/openwrt
-svn co https://github.com/lon91ong/OpenWrt/devices openwrt/devices
+git clone -b openwrt-21.02 --depth 1 https://ghproxy.com/https://github.com/openwrt/openwrt
+svn co https://github.com/lon91ong/OpenWrt/trunk/devices openwrt/devices
 cd openwrt
 
 echo "
