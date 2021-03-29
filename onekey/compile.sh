@@ -1,7 +1,7 @@
 #/bin/bash
 echo
 echo
-echo "本脚本仅适用于在Ubuntu环境下编译 https://github.com/garypang13/Actions-OpenWrt"
+echo "本脚本仅适用于在Ubuntu环境下编译 https://github.com/lon91ong/OpenWrt"
 echo
 echo
 sleep 2s
@@ -41,7 +41,7 @@ fi
 
 rm -Rf openwrt
 git clone -b openwrt-21.02 --depth 1 https://github.com/openwrt/openwrt
-svn co https://github.com/garypang13/Actions-OpenWrt/trunk/devices openwrt/devices
+svn co https://github.com/lon91ong/OpenWrt/devices openwrt/devices
 cd openwrt
 
 echo "
@@ -60,7 +60,9 @@ echo "
 
 7. XY-C5
 
-8. Exit
+8. hiwifi-hc5962
+
+9. Exit
 
 "
 
@@ -97,13 +99,17 @@ case $CHOOSE in
 		firmware="XY-C5"
 	break
 	;;
-	8)	exit 0
+	8)
+		firmware="hiwifi-hc5962"
+	break
+	;;
+	9)	exit 0
 	;;
 
 esac
 done
 
-if [[ $firmware =~ (redmi-ac2100|phicomm-k2p|newifi-d2|k2p-32m-usb|XY-C5|xiaomi-r3p) ]]; then
+if [[ $firmware =~ (redmi-ac2100|phicomm-k2p|newifi-d2|k2p-32m-usb|XY-C5|xiaomi-r3p|hiwifi-hc5962) ]]; then
 		wget -cO sdk1.tar.xz https://mirrors.cloud.tencent.com/openwrt/releases/21.02-SNAPSHOT/targets/ramips/mt7621/openwrt-sdk-21.02-SNAPSHOT-ramips-mt7621_gcc-8.4.0_musl.Linux-x86_64.tar.xz
 elif [[ $firmware =~ (nanopi-r2s|nanopi-r4s) ]]; then
 		wget -cO sdk1.tar.xz https://mirrors.cloud.tencent.com/openwrt/releases/21.02-SNAPSHOT/targets/rockchip/armv8/openwrt-sdk-21.02-SNAPSHOT-rockchip-armv8_gcc-8.4.0_musl.Linux-x86_64.tar.xz
@@ -112,8 +118,8 @@ elif [[ $firmware == "x86_64" ]]; then
 fi
 
 
-read -p "请输入后台地址 [回车默认10.0.0.1]: " ip
-ip=${ip:-"10.0.0.1"}
+read -p "请输入后台地址 [回车默认192.168.77.1]: " ip
+ip=${ip:-"192.168.77.1"}
 echo "您的后台地址为: $ip"
 cp -rf devices/common/* ./
 cp -rf devices/$firmware/* ./
