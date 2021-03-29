@@ -1,0 +1,22 @@
+--- a/target/linux/ramips/image/mt7621.mk
++++ b/target/linux/ramips/image/mt7621.mk
+@@ -563,18 +563,10 @@
+ 
+ define Device/hiwifi_hc5962
+   $(Device/dsa-migration)
+-  BLOCKSIZE := 128k
+-  PAGESIZE := 2048
+-  KERNEL_SIZE := 4096k
+-  UBINIZE_OPTS := -E 5
+-  IMAGE_SIZE := 32768k
+-  IMAGES += factory.bin
+-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+-  IMAGE/factory.bin := append-kernel | pad-to $$(KERNEL_SIZE) | append-ubi | \
+-	check-size
++  IMAGE_SIZE := 16064k
+   DEVICE_VENDOR := HiWiFi
+   DEVICE_MODEL := HC5962
+-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 kmod-usb3
++  DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2
+ endef
+ TARGET_DEVICES += hiwifi_hc5962
