@@ -3,7 +3,7 @@ echo -e "\q" | svn co https://github.com/coolsnowwolf/lede/trunk/target/linux/ra
 rm -Rf target/linux/ramips/.svn
 echo -e "\q" | svn co https://github.com/coolsnowwolf/lede/trunk/target/linux/ramips/patches-5.4 target/linux/ramips/patches-5.4
 
-cp -f $GITHUB_WORKSPACE/devices/hiwifi-hc5962/mt7621_hiwifi_hc5962-32m.dts ./target/linux/ramips/dts/mt7621_hiwifi_hc5962-32m.dts
+cp -f $GITHUB_WORKSPACE/devices/hiwifi-hc5962-32m/mt7621_hiwifi_hc5962-32m.dts ./target/linux/ramips/dts/mt7621_hiwifi_hc5962-32m.dts
 sed -i 's/10.0.0.1/192.168.77.1/g' $GITHUB_WORKSPACE/devices/common/default-settings
 
 cat >> ./target/linux/ramips/image/mt7621.mk <<EOF
