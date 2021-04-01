@@ -7,5 +7,5 @@ sed -i 's?admin/status/channel_analysis??' package/feeds/luci/luci-mod-status/ro
 #rm -f ./target/linux/ramips/image/mt7621.mk
 #rm -f ./target/linux/ramips/dts/mt7621_hiwifi_hc5962.dts
 cp -f $GITHUB_WORKSPACE/devices/hiwifi-hc5962/mt7621_hiwifi_hc5962.dts ./target/linux/ramips/dts/mt7621_hiwifi_hc5962.dts
-cp -f $GITHUB_WORKSPACE/devices/hiwifi-hc5962/mt7621.mk ./target/linux/ramips/image/mt7621.mk
+#cp -f $GITHUB_WORKSPACE/devices/hiwifi-hc5962/mt7621.mk ./target/linux/ramips/image/mt7621.mk
 #sed -i 's/^[ \t]*//g' ./target/linux/ramips/image/mt7621.mk
