@@ -4,22 +4,6 @@ rm -Rf target/linux/ramips/.svn
 echo -e "\q" | svn co https://github.com/coolsnowwolf/lede/trunk/target/linux/ramips/patches-5.4 target/linux/ramips/patches-5.4
 
 cp -f $GITHUB_WORKSPACE/devices/hiwifi-hc5962/mt7621_hiwifi_hc5962.dts ./target/linux/ramips/dts/mt7621_hiwifi_hc5962.dts
-sed -i 's/10.0.0.1/192.168.77.1/g' $GITHUB_WORKSPACE/devices/common/default-settings
+sed -i 's/10.0.0.1/192.168.77.1/g' devices/common/default-settings
 
 sed -i 's?admin/status/channel_analysis??' package/feeds/luci/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json
-
-sed -i '/unsplash.com/d' package/feeds/custom/luci-theme-edge/luasrc/view/themes/edge/sysauth.htm
-
-sed -i 's?<img src="<%=media%>/background/3.jpg" alt="img"/>??' package/feeds/custom/luci-theme-edge/luasrc/view/themes/edge/sysauth.htm
-
-rm -f package/feeds/custom/luci-theme-edge/htdocs/luci-static/edge/background/3.jpg
-
-sed -i '/app_update/d' package/feeds/custom/luci-app-bypass/luasrc/controller/bypass.lua
-
-sed -i 's/PKG_VERSION:=1/PKG_VERSION:=2/' package/feeds/custom/luci-app-bypass/Makefile
-
-sed -i 's/ +unzip +lua-maxminddb//' package/feeds/custom/luci-app-bypass/Makefile
-
-sed -i '/status_bottom/d' package/feeds/custom/luci-app-bypass/luasrc/model/cbi/bypass/base.lua
-
-rm -Rf package/feeds/custom/luci-app-bypass/{root/www,root/usr/share/bypass/GeoLite2-Country.mmdb}
