@@ -1,5 +1,5 @@
---- 02_network_o	2021-04-03 11:25:18.199488400 +0800
-+++ 02_network_n	2021-04-03 11:33:16.360095300 +0800
+--- a/target/linux/ramips/mt7621/base-files/etc/board.d/02_network
++++ b/target/linux/ramips/mt7621/base-files/etc/board.d/02_network
 @@ -25,6 +25,7 @@
  		ucidef_set_interface_lan "eth0.1 ra0 rai0"
  		;;
