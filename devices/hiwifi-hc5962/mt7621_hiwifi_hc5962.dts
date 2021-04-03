@@ -46,6 +46,10 @@
 	};
 };
 
+&sdhci {
+	status = "okay";
+};
+
 &spi0 {
 	status = "okay";
 
@@ -131,6 +135,7 @@
 		port@4 {
 			status = "okay";
 			label = "wan";
+			mtd-mac-address = <&factory 0xe006>;
 		};
 	};
 };
