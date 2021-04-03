@@ -1,0 +1,56 @@
+--- a/target/linux/ramips/image/mt7621.mk
++++ b/target/linux/ramips/image/mt7621.mk
+@@ -390,18 +390,11 @@
+ TARGET_DEVICES += gnubee_gb-pc2
+ 
+ define Device/hiwifi_hc5962
+-  BLOCKSIZE := 128k
+-  PAGESIZE := 2048
+-  KERNEL_SIZE := 4096k
+-  UBINIZE_OPTS := -E 5
+-  IMAGE_SIZE := 32768k
+-  IMAGES += factory.bin
+-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+-  IMAGE/factory.bin := append-kernel | pad-to $$(KERNEL_SIZE) | append-ubi | \
+-	check-size
++  $(Device/uimage-lzma-loader)
++  IMAGE_SIZE := 16064k
+   DEVICE_VENDOR := HiWiFi
+   DEVICE_MODEL := HC5962
+-  DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 kmod-usb3 wpad-openssl
++  DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 wpad-openssl
+ endef
+ TARGET_DEVICES += hiwifi_hc5962
+ 
+--- a/target/linux/ramips/mt7621/base-files/etc/board.d/02_network
++++ b/target/linux/ramips/mt7621/base-files/etc/board.d/02_network
+@@ -25,6 +25,7 @@
+ 		ucidef_set_interface_lan "eth0.1 ra0 rai0"
+ 		;;
+ 	hiwifi,hc5962|\
++	hiwifi,hc5962-32m|\
+ 	xiaomi,mir3p)
+ 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 ra0 rai0" "wan"
+ 		;;
+@@ -119,6 +120,8 @@
+ 		wan_mac="$(grep -m1 mac= "/dev/mtd${index}" | cut -d= -f2)"
+ 		lan_mac=$wan_mac
+ 		;;
++	hiwifi,hc5962|\
++	hiwifi,hc5962-32m|\
+ 	d-team,newifi-d2)
+ 		lan_mac=$(cat /sys/class/net/eth0/address)
+ 		wan_mac=$(mtd_get_mac_binary factory 0xe006)
+@@ -136,12 +137,6 @@
+ 		lan_mac=$(cat /sys/class/net/eth0/address)
+ 		wan_mac=$(macaddr_add "$lan_mac" 1)
+ 		;;
+-	hiwifi,hc5962)
+-		lan_mac=$(mtd_get_mac_ascii bdinfo "Vfac_mac ")
+-		label_mac=$lan_mac
+-		[ -n "$lan_mac" ] || lan_mac=$(cat /sys/class/net/eth0/address)
+-		wan_mac=$(macaddr_add "$lan_mac" 1)
+-		;;
+ 	iodata,wnpr2600g)
+ 		wan_mac=$(mtd_get_mac_ascii u-boot-env wanaddr)
+ 		label_mac=$wan_mac
