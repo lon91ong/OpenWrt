@@ -11,7 +11,7 @@ sed -i 's/10.0.0.1/192.168.77.1/g' devices/common/default-settings
 cat >> ./target/linux/ramips/image/mt7621.mk <<EOF
 define Device/hiwifi_hc5962-32m
   $(Device/uimage-lzma-loader)
-  IMAGE_SIZE := 32448k
+  IMAGE_SIZE := 32384k
   DEVICE_VENDOR := HiWiFi
   DEVICE_MODEL := HC5962-32M
   DEVICE_PACKAGES := kmod-mt7603 kmod-mt76x2 wpad-openssl
