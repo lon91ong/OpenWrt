@@ -85,7 +85,12 @@
 			partition@50000 {
 				compatible = "denx,uimage";
 				label = "firmware";
-				reg = <0x50000 0xfb0000>;
+				reg = <0x50000 0xfa0000>;
+			};
+			bdinfo: partition@ff0000 {
+				label = "bdinfo";
+				reg = <0xff0000 0x10000>;
+				read-only;
 			};
 		};
 	};
@@ -111,10 +116,6 @@
 	};
 };
 
-&gmac0 {
-	mtd-mac-address = <&factory 0xe000>;
-};
-
 &switch0 {
 	ports {
 		port@1 {
@@ -135,7 +136,6 @@
 		port@4 {
 			status = "okay";
 			label = "wan";
-			mtd-mac-address = <&factory 0xe006>;
 		};
 	};
 };
