@@ -41,7 +41,7 @@
  	d-team,newifi-d2)
  		lan_mac=$(cat /sys/class/net/eth0/address)
  		wan_mac=$(mtd_get_mac_binary factory 0xe006)
-@@ -136,9 +139,6 @@
+@@ -136,12 +139,6 @@
  		lan_mac=$(cat /sys/class/net/eth0/address)
  		wan_mac=$(macaddr_add "$lan_mac" 1)
  		;;
