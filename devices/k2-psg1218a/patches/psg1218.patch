@@ -1,5 +1,5 @@
---- mt7620.mk
-+++ mt7620.mk
+--- a/target/linux/ramips/image/mt7620.mk
++++ b/target/linux/ramips/image/mt7620.mk
 @@ -784,7 +784,7 @@
  
  define Device/phicomm_psg1218a
@@ -9,8 +9,8 @@
    DEVICE_VENDOR := Phicomm
    DEVICE_MODEL := PSG1218
    DEVICE_VARIANT:= Ax
---- mt7620a_phicomm_psg1218.dtsi
-+++ mt7620a_phicomm_psg1218.dtsi
+--- a/target/linux/ramips/dts/mt7620a_phicomm_psg1218.dtsi
++++ b/target/linux/ramips/dts/mt7620a_phicomm_psg1218.dtsi
 @@ -55,7 +55,7 @@
  			partition@40000 {
  				compatible = "denx,uimage";
