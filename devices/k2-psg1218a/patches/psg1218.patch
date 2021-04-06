@@ -1,6 +1,6 @@
 --- a/target/linux/ramips/image/mt7620.mk
 +++ b/target/linux/ramips/image/mt7620.mk
-@@ -784,11 +784,11 @@
+@@ -784,12 +784,12 @@
  
  define Device/phicomm_psg1218a
    SOC := mt7620a
@@ -14,3 +14,4 @@
 +  SUPPORTED_DEVICES += psg1218a
  endef
  TARGET_DEVICES += phicomm_psg1218a
+ 
