@@ -16,29 +16,11 @@ cat >> ./target/linux/ramips/image/mt7620.mk <<EOF
 define Device/k2_psg1218a
   SOC := mt7620a
   IMAGE_SIZE := 16064k
-  DEVICE_VENDOR := Phicomm
-  DEVICE_MODEL := PSG1218
+  DEVICE_VENDOR := K2
+  DEVICE_MODEL := PSG1218A
   DEVICE_VARIANT:= Ax
   DEVICE_PACKAGES := kmod-mt76x2
   SUPPORTED_DEVICES += psg1218 psg1218a
 endef
 TARGET_DEVICES += k2_psg1218a
 EOF
-
-sed -i 's/O2/Os/g' include/target.mk
-
-sed -i '/unsplash.com/d' package/feeds/custom/luci-theme-edge/luasrc/view/themes/edge/sysauth.htm
-
-sed -i 's?<img src="<%=media%>/background/3.jpg" alt="img"/>??' package/feeds/custom/luci-theme-edge/luasrc/view/themes/edge/sysauth.htm
-
-rm -f package/feeds/custom/luci-theme-edge/htdocs/luci-static/edge/background/3.jpg
-
-sed -i '/app_update/d' package/feeds/custom/luci-app-bypass/luasrc/controller/bypass.lua
-
-sed -i 's/PKG_VERSION:=1/PKG_VERSION:=2/' package/feeds/custom/luci-app-bypass/Makefile
-
-sed -i 's/ +unzip +lua-maxminddb//' package/feeds/custom/luci-app-bypass/Makefile
-
-sed -i '/status_bottom/d' package/feeds/custom/luci-app-bypass/luasrc/model/cbi/bypass/base.lua
-
-rm -Rf package/feeds/custom/luci-app-bypass/{root/www,root/usr/share/bypass/GeoLite2-Country.mmdb}
