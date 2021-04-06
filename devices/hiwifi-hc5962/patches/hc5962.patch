@@ -1,6 +1,6 @@
 --- a/target/linux/ramips/image/mt7621.mk
 +++ b/target/linux/ramips/image/mt7621.mk
-@@ -390,17 +390,10 @@
+@@ -390,18 +390,11 @@
  TARGET_DEVICES += gnubee_gb-pc2
  
  define Device/hiwifi_hc5962
