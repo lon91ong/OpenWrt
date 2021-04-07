@@ -1,6 +1,4 @@
 rm -Rf files/etc/profile.d/sysinfo.sh
-rm -rf target/linux include
-svn co https://github.com/x-wrt/x-wrt/trunk/include
 rm -rf target/linux/ramips
 svn co https://github.com/coolsnowwolf/lede/trunk/target/linux/ramips target/linux/ramips
 
