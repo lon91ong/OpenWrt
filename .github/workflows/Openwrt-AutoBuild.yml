@@ -19,6 +19,7 @@ env:
   TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
   TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+  UPLOAD_FIRMWARE_TO_COWTRANSFER: true
   TZ: Asia/Shanghai
 
 jobs:
