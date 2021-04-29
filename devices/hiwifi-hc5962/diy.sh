@@ -12,6 +12,5 @@ echo -e "\q" | svn co https://github.com/coolsnowwolf/lede/trunk/target/linux/ra
 
 sed -i 's?admin/status/channel_analysis??' package/feeds/luci/luci-mod-status/root/usr/share/luci/menu.d/luci-mod-status.json
 
-cd package/feeds/custom
-rm -rf luci-theme-argon  
-git clone https://github.com/jerrykuku/luci-theme-argon.git
+rm -rf feeds/custom/luci-theme-argon
+git clone https://github.com/jerrykuku/luci-theme-argon.git feeds/custom/luci-theme-argon
