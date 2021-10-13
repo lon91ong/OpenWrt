@@ -41,7 +41,7 @@ jobs:
         if [ ${{ github.event.inputs.ssh }} == 'true' ]; then
           echo "SSH=ssh" >> $GITHUB_ENV
         fi
-        curl -X POST https://api.github.com/repos/garypang13/openwrt-packages/dispatches \
+        curl -X POST https://api.github.com/repos/kiddin9/openwrt-packages/dispatches \
         -H "Accept: application/vnd.github.everest-preview+json" \
         -H "Authorization: token ${{ secrets.REPO_TOKEN }}" \
         --data '{"event_type": "update"}'
@@ -53,6 +53,11 @@ jobs:
         -H "Accept: application/vnd.github.everest-preview+json" \
         -H "Authorization: token ${{ secrets.REPO_TOKEN }}" \
         -d '{"event_type": "hiwifi-hc5962 ${{ env.SSH }}", "client_payload": {"target": "hiwifi-hc5962"}}'
+        curl \
+        -X POST https://api.github.com/repos/${{ github.repository }}/dispatches \
+        -H "Accept: application/vnd.github.everest-preview+json" \
+        -H "Authorization: token ${{ secrets.REPO_TOKEN }}" \
+        -d '{"event_type": "phicomm-k2p ${{ env.SSH }}", "client_payload": {"target": "phicomm-k2p"}}'
         curl \
         -X POST https://api.github.com/repos/${{ github.repository }}/dispatches \
         -H "Accept: application/vnd.github.everest-preview+json" \
