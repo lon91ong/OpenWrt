@@ -8,7 +8,7 @@ rm -rf include/kernel-version.mk
 wget -O include/kernel-version.mk https://raw.githubusercontent.com/coolsnowwolf/lede/master/include/kernel-version.mk
 
 rm -rf package/feeds/custom/mt-drivers
-svn co https://github.com/coolsnowwolf/lede/tree/master/package/lean/mt/drivers package/feeds/custom/mt-drivers
+svn co https://github.com/coolsnowwolf/lede/branches/master/package/lean/mt/drivers package/feeds/custom/mt-drivers
 
 sed -i 's/kmod-mt7615d_dbdc/kmod-mt7615d luci-app-mtwifi/g' target/linux/ramips/image/mt7621.mk
 
