@@ -1,11 +1,11 @@
 
 find target/linux/ramips/* -maxdepth 0 ! -path '*/patches-5.4' -exec rm -Rf '{}' \;
-echo -e "\q" | svn export --force https://github.com/coolsnowwolf/lede/trunk/target/linux/ramips target/linux/ramips
+echo -e "\q" | svn export --force https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/target/linux/ramips target/linux/ramips
 rm -Rf target/linux/ramips/.svn
-echo -e "\q" | svn export --force https://github.com/coolsnowwolf/lede/trunk/target/linux/ramips/patches-5.4 target/linux/ramips/patches-5.4
+echo -e "\q" | svn export --force https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/target/linux/ramips/patches-5.4 target/linux/ramips/patches-5.4
 
 rm -rf include/kernel-version.mk
-wget -O include/kernel-version.mk https://raw.githubusercontent.com/coolsnowwolf/lede/master/include/kernel-version.mk
+wget -O include/kernel-version.mk https://github.com/immortalwrt/immortalwrt/raw/openwrt-21.02/include/kernel-version.mk
 
 rm -rf package/feeds/custom/mt-drivers
 svn export --force https://github.com/immortalwrt/immortalwrt/branches/master/package/kernel/mt-drivers package/feeds/custom/mt-drivers
