@@ -165,10 +165,6 @@ jobs:
         sed -i '$i uci set network.wan.password=${{ env.PPPOE_PASSWD }}' openwrt/package/*/*/default-settings/files/uci.defaults
         sed -i '$i uci commit network' openwrt/package/*/*/default-settings/files/uci.defaults
               
-    - name: SSH connection to Actions
-      uses: garypang13/debugger-action@master
-      if: contains(github.event.action, 'ssh')
-
     - name: Download package
       id: package
       run: |
