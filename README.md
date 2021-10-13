@@ -1,3 +1,10 @@
+# 停更说明
+
+[上游停止更新了](https://www.right.com.cn/forum/thread-4118555-1-1.html)，[最后一个K2P的源码版本](https://github.com/kiddin9/OpenWrt_x86-r2s-r4s/tree/f0e45a4cf2dc2d1519936fa60c3769bde791a5e9),现在编译不了了，报错太多！
+编译好的固件[历史版本](https://op.supes.top/firmware/obsolete/phicomm-k2p/)
+
+新开了一个项目[Actions-OpenWrt](https://github.com/lon91ong/Actions-OpenWrt), 引用[C大的lede](https://github.com/coolsnowwolf/lede)进行定制编译
+
 # Actions OpenWrt Snapshot
 [1]: https://img.shields.io/badge/license-GPLV2-brightgreen.svg
 [2]: /LICENSE
